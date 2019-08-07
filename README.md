@@ -1,29 +1,16 @@
-# todolist
+## Todo list (Vue.js, Express, Node.js, MongoDB)
+![](todo.gif)\
+Everything is set up on the localhost.
 
-## Project setup
-```
-npm install
-```
+### Project setup
+`npm install`
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### Frontend
+`npm run serve` localhost:8080
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### Backend
+`cd backend/`\
+`nodemon server.js`
 
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### DB
+`docker container run -p 127.0.0.1:27017:27017 --name mongodb  -t mongo`
