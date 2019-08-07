@@ -20,7 +20,7 @@
 <script>
 import InputBox from "../components/InputBox.vue";
 import ListItem from "../components/ListItem.vue";
-import fetch from 'node-fetch';
+import fetch from "node-fetch";
 
 let nextTodoId = 1;
 
@@ -38,15 +38,12 @@ export default {
   },
   methods: {
     async fetchTodo() {
-      await fetch('http://localhost:4000/api/todolist').then((res) => {
-        res.json().then((json) => {
+      await fetch("http://localhost:4000/api/todolist").then(res => {
+        res.json().then(json => {
           this.todos = json;
-          console.log(json);
-        })
-      })
-      // let json = response.json();
-      // this.todos = json;
-      // console.log('fetched response: ', json);
+          // console.log(JSON.stringify(json));
+        });
+      });
     },
 
     async addTodo() {
@@ -60,7 +57,7 @@ export default {
           },
           body: JSON.stringify({ name: trimmed })
         }).then(response => {
-          console.log("post response: ", response);
+          console.log(response);
         });
         this.todos.push({
           id: nextTodoId++,
@@ -70,9 +67,17 @@ export default {
         this.fetchTodo();
       }
     },
-    removeTodo(idToRemove) {
-      this.todos = this.todos.filter(todo => {
-        return todo.id !== idToRemove;
+
+    async removeTodo(id) {
+      await fetch(`http://localhost:4000/api/todolist/${id}/delete`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
+      }).then(response => {
+        console.log(response);
+        this.fetchTodo();
       });
     }
   }
