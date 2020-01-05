@@ -1,16 +1,16 @@
 <template>
   <div>
-    <InputBox 
+    <InputBox
       v-model="newTodoText"
-			placeholder="New todo item"
-			@keydown.enter="addTodo"
+      placeholder="New todo item"
+      @keydown.enter="addTodo"
     />
-    
+
     <ul v-if="todos.length">
       <ListItem
         v-for="todo in todos"
         :key="todo.id"
-				:todo="todo"
+        :todo="todo"
         @remove="removeTodo"
       />
     </ul>
@@ -83,4 +83,3 @@ export default {
   }
 };
 </script>
-
